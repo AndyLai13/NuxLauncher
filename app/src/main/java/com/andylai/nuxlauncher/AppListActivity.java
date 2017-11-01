@@ -31,7 +31,9 @@ public class AppListActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1 ,queryAllApps());
         AppList.setAdapter(adapter);
 
-
+//int[] data = {1,2,3,4,5};
+//
+//List list = Arrays.asList(data);
 
 //        adapter.addItemList(queryHomeApp());
 //        lvHome.setAdapter(adapter);
