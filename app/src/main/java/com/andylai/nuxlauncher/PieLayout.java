@@ -56,7 +56,7 @@ public class PieLayout extends RelativeLayout{
         mContext = context;
     }
 
-    public void setListener(View.OnClickListener listener) {
+    public void setOnClickListenerListener(View.OnClickListener listener) {
         mListener = listener;
     }
 

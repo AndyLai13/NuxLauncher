@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,34 +14,19 @@ import java.util.List;
  */
 
 public class CoverFlowAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
-    /**
-     *  默认缩小的padding值
-     */
-    public static int sWidthPadding;
 
+    public static int sWidthPadding;
     public static int sHeightPadding;
 
-    /**
-     * 子元素的集合
-     */
     private List<View> mViewList;
-
-    /**
-     * 滑动监听的回调接口
-     */
-    private OnPageSelectListener listener;
-
-    /**
-     * 上下文对象
-     */
+    private OnPageSelectListener mListener;
     private Context mContext;
 
     public CoverFlowAdapter(List<View> mImageViewList, Context context) {
-        this.mViewList = mImageViewList;
-        mContext = context;
-        // 设置padding值
-        sWidthPadding = dp2px(24);
-        sHeightPadding = dp2px(32);
+        mViewList = mImageViewList;
+        mContext  = context;
+        sWidthPadding  = NuxUtil.dpToPx(context, 24);
+        sHeightPadding = NuxUtil.dpToPx(context, 32);
     }
 
     @Override
@@ -54,7 +38,6 @@ public class CoverFlowAdapter extends PagerAdapter implements ViewPager.OnPageCh
     public Object instantiateItem(ViewGroup container, int position) {
         View view = mViewList.get(position);
         container.addView(view);
-
         return view;
     }
 
@@ -70,10 +53,11 @@ public class CoverFlowAdapter extends PagerAdapter implements ViewPager.OnPageCh
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        // 该方法回调ViewPager 的滑动偏移量
+
         if (mViewList.size() > 0 && position < mViewList.size()) {
             //当前手指触摸滑动的页面,从0页滑动到1页 offset越来越大，padding越来越大
             Log.i("info", "重新设置padding");
+            Log.d("Andy", "positionOffset = " + positionOffset + "position = " + position);
             int outHeightPadding = (int) (positionOffset * sHeightPadding);
             int outWidthPadding = (int) (positionOffset * sWidthPadding);
             // 从0滑动到一时，此时position = 0，其应该是缩小的，符合
@@ -91,37 +75,16 @@ public class CoverFlowAdapter extends PagerAdapter implements ViewPager.OnPageCh
 
     @Override
     public void onPageSelected(int position) {
-        // 回调选择的接口
-        if (listener != null) {
-            listener.select(position);
+        if (mListener != null) {
+            mListener.select(position);
         }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
-    /**
-     * 当将某一个作为最中央时的回调
-     *
-     * @param listener
-     */
     public void setOnPageSelectListener(OnPageSelectListener listener) {
-        this.listener = listener;
+        mListener = listener;
     }
-
-
-    /**
-     * dp 转 px
-     *
-     * @param dp
-     * @return
-     */
-    public int dp2px(int dp) {
-        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mContext.getResources().getDisplayMetrics());
-
-        return px;
-    }
-
 }

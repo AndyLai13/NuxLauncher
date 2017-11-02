@@ -14,18 +14,18 @@ public abstract class OnSwipeTouchListener implements View.OnTouchListener {
 
     private final String TAG = "OnSwipeTouchListener";
     private Context mContext;
-    private final GestureDetector mGesturDector;
+    private final GestureDetector mGestureDetector;
 
 
 
     public OnSwipeTouchListener (Context context){
         this.mContext = context;
-        mGesturDector = new GestureDetector(mContext, new GestureListener());
+        mGestureDetector = new GestureDetector(mContext, new GestureListener());
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        return mGesturDector.onTouchEvent(event);
+        return mGestureDetector.onTouchEvent(event);
     }
 
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -64,7 +64,7 @@ public abstract class OnSwipeTouchListener implements View.OnTouchListener {
                 if (condition1) {
                     onSwipeLeftLowerHalfBound();
                 } else if (condition2) {
-                    onSwipeBottomRightHalfBound();
+                    onSwipeBottomLeftHalfBound();
                 }
                 return true;
             } catch (Exception exception) {
@@ -88,7 +88,7 @@ public abstract class OnSwipeTouchListener implements View.OnTouchListener {
     public void onSwipeLeft(){}
     public void onSwipeTop(){}
     public void onSwipeBottom(){}
-    public void onSwipeBottomRightHalfBound(){}
+    public void onSwipeBottomLeftHalfBound(){}
     public void onSwipeLeftLowerHalfBound(){}
 
 

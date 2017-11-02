@@ -1,44 +1,46 @@
-package com.andylai.nuxlauncher;
+package com.andylai.nuxlauncher.demo;
 
-import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.andylai.nuxlauncher.NuxUtil;
+import com.andylai.nuxlauncher.OnSwipeTouchListener;
+import com.andylai.nuxlauncher.PieLayout;
+import com.andylai.nuxlauncher.R;
+
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
 
+public class SwippingPieMenuDemoActivity extends AppCompatActivity {
 
-    private final String TAG = "MainActivity";
-
+    private final String TAG = getClass().getSimpleName();
+    private PieLayout pieLayout;
     private Button openPieButton;
     private Button closePieButton;
 
     private float EXPAND_RATIO = 0.8f;
     private int rotateRadius; // unit : px
-
     private ConstraintLayout mMainPage;
-    private PieLayout pieLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_swipping_pie_menu_demo);
 
-        Log.d(TAG, "getWindowWidth = " + NuxUtil.getWindowWidth(HomeActivity.this));
-        Log.d(TAG, "getWindowHeight = " + NuxUtil.getWindowHeight(HomeActivity.this));
-        initPieLayout();
         mMainPage = (ConstraintLayout) findViewById(R.id.main_page);
+        Log.d(TAG, "getWindowWidth = " + NuxUtil.getWindowWidth(this));
+        Log.d(TAG, "getWindowHeight = " + NuxUtil.getWindowHeight(this));
+        initPieLayout();
         openPieButton = (Button) findViewById(R.id.open_pie_button);
         closePieButton = (Button) findViewById(R.id.close_pie_button);
 
         openPieButton.setOnClickListener(mOpenClosePieButtonListener);
         closePieButton.setOnClickListener(mOpenClosePieButtonListener);
-
     }
 
     @Override
@@ -51,30 +53,21 @@ public class HomeActivity extends AppCompatActivity {
          * View.OnTouchListener mSwipeDetector = new OnSwipeTouchListener(MainActivity.this){};
          *
          */
-        mMainPage.setOnTouchListener(new OnSwipeTouchListener(HomeActivity.this) {
+        mMainPage.setOnTouchListener(new OnSwipeTouchListener(SwippingPieMenuDemoActivity.this) {
             @Override
-            public void onSwipeBottomRightHalfBound() {
-                super.onSwipeBottomRightHalfBound();
-                Log.d(TAG, "onSwipeBottomRightHalfBound ");
-
+            public void onSwipeBottomLeftHalfBound() {
+                super.onSwipeBottomLeftHalfBound();
+                Log.d(TAG, "onSwipeBottomLeftHalfBound ");
                 pieLayout.closePieMenu();
-//                Toast.makeText(MainActivity.this, "onSwipeBottomRightHalfBound",
-//                        Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onSwipeLeftLowerHalfBound() {
                 Log.d(TAG, "onSwipeLeftLowerHalfBound ");
-
                 pieLayout.showPieMenu();
-//                Toast.makeText(MainActivity.this, "onSwipeLeftLowerHalfBound",
-//                        Toast.LENGTH_SHORT).show();
-
             }
         });
     }
-
     private void initPieLayout() {
         rotateRadius = (int) (EXPAND_RATIO * NuxUtil.getWindowWidth(this));
         Log.d(TAG, "rotateRadius = " + rotateRadius);
@@ -85,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         params.bottomToBottom = 0;
         pieLayout = (PieLayout) findViewById(R.id.my_pie);
         pieLayout.setLayoutParams(params);
-        pieLayout.setListener(mPieMenuListener);
+        pieLayout.setOnClickListenerListener(mPieMenuListener);
         pieLayout.initPieMenu(getButtonIcons()/*null*/);
     }
 
@@ -128,15 +121,18 @@ public class HomeActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.button1:
-                    Toast.makeText(HomeActivity.this, "my_button1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SwippingPieMenuDemoActivity.this,
+                            "my_button1", Toast.LENGTH_SHORT).show();
                     Log.d("Andy", "my_button1");
                     break;
                 case R.id.button2:
-                    Toast.makeText(HomeActivity.this, "my_button2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SwippingPieMenuDemoActivity.this,
+                            "my_button2", Toast.LENGTH_SHORT).show();
                     Log.d("Andy", "my_button2");
                     break;
                 case R.id.button3:
-                    Toast.makeText(HomeActivity.this, "my_button3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SwippingPieMenuDemoActivity.this,
+                            "my_button3", Toast.LENGTH_SHORT).show();
                     Log.d("Andy", "my_button3");
                     break;
                 default:
@@ -144,5 +140,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     };
-
 }

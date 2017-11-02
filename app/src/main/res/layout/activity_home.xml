@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andylai.nuxlauncher.HomeActivity"
-    android:background="#5B5B5B"
-    android:id="@+id/main_page">
+    tools:context="com.andylai.nuxlauncher.demo.HomeActivity">
 
-    <com.andylai.nuxlauncher.PieLayout
-        android:id="@+id/my_pie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.andylai.nuxlauncher.PieLayout>
 
     <Button
-        android:id="@+id/open_pie_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/launcher_list"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="open"
-        android:layout_marginLeft="48dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp" />
+        android:layout_marginTop="100dp"
+        android:text="1.LauncherList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/close_pie_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/cover_flow"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="close"
-        android:layout_marginLeft="48dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/open_pie_button" />
+        android:layout_marginTop="50dp"
+        android:text="2.CoverFlow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/launcher_list" />
 
+    <Button
+        android:id="@+id/swipping_pie_menu"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="3.SwippingPieMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover_flow" />
 </android.support.constraint.ConstraintLayout>
