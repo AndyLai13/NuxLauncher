@@ -31,16 +31,12 @@ public class CoverFlowDemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cover_flow_demo);
 
         List<View> list = new ArrayList<>();
-//        for(int i = 0;i < 10; i++){
-//            ImageView img = new ImageView(this);
-//            img.setBackgroundColor(Color.parseColor("#" + getRandColorCode()));
-//            list.add(img);
-//        }
+
 
         for(int i = 0;i < mImgIds.length; i++){
             ImageView img = new ImageView(this);
             img.setBackgroundColor(Color.parseColor("#" + getRandColorCode()));
-            img.setImageResource(mImgIds[i]);
+            //img.setImageResource(mImgIds[i]);
             list.add(img);
         }
 
@@ -62,9 +58,9 @@ public class CoverFlowDemoActivity extends AppCompatActivity {
         g = Integer.toHexString(random.nextInt(256)).toUpperCase();
         b = Integer.toHexString(random.nextInt(256)).toUpperCase();
 
-        r = r.length()==1 ? "0" + r : r ;
-        g = g.length()==1 ? "0" + g : g ;
-        b = b.length()==1 ? "0" + b : b ;
+        r = r.length() == 1 ? "0" + r : r ;
+        g = g.length() == 1 ? "0" + g : g ;
+        b = b.length() == 1 ? "0" + b : b ;
 
         return r + g + b;
     }
