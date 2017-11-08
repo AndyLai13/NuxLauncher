@@ -1,12 +1,11 @@
 package com.andylai.nuxlauncher;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -23,10 +22,12 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
     private CoverFlowAdapter mAdapter;
     private OnPageSelectListener mListener;
     private List<View> mViewList = new ArrayList<>();
+    private FragmentActivity mActivity;
 
     public CoverFlowViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         inflate(context, R.layout.widget_cover_flow,this);
+        mActivity = (FragmentActivity) context;
         init();
     }
 
@@ -36,8 +37,13 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
         mAdapter = new CoverFlowAdapter(mViewList, getContext());
         mAdapter.setOnPageSelectListener(this);
 
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.addOnPageChangeListener(mAdapter);
+
+        CoverFlowFragmentPagerAdapter adapter = new CoverFlowFragmentPagerAdapter(
+                mActivity.getSupportFragmentManager());
+
+
+        mViewPager.setAdapter(adapter);
+        mViewPager.addOnPageChangeListener(adapter);
         mViewPager.setOffscreenPageLimit(5);
 
         this.setOnTouchListener(new OnTouchListener() {
