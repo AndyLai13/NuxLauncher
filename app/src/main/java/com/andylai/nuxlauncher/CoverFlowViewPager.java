@@ -18,11 +18,13 @@ import java.util.List;
 
 public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectListener  {
 
-    private ViewPager mViewPager;
+    private ViewPager mViewPagerTop;
+    private ViewPager mViewPagerBot;
     private CoverFlowAdapter mAdapter;
     private OnPageSelectListener mListener;
     private List<View> mViewList = new ArrayList<>();
     private FragmentActivity mActivity;
+    CoverFlowFragmentPagerAdapter adapter;
 
     public CoverFlowViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,27 +34,33 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
     }
 
     private void init() {
-        mViewPager = (ViewPager) findViewById(R.id.vp_conver_flow);
+        mViewPagerTop = (ViewPager) findViewById(R.id.top_cover_flow);
 
         mAdapter = new CoverFlowAdapter(mViewList, getContext());
         mAdapter.setOnPageSelectListener(this);
 
+        mViewPagerTop.setAdapter(mAdapter);
+        mViewPagerTop.addOnPageChangeListener(mAdapter);
+        mViewPagerTop.setOffscreenPageLimit(5);
 
-        CoverFlowFragmentPagerAdapter adapter = new CoverFlowFragmentPagerAdapter(
-                mActivity.getSupportFragmentManager());
 
-
-        mViewPager.setAdapter(adapter);
-        mViewPager.addOnPageChangeListener(adapter);
-        mViewPager.setOffscreenPageLimit(5);
 
         this.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // 传递给ViewPager 进行滑动处理
-                return mViewPager.dispatchTouchEvent(event);
+                return mViewPagerTop.dispatchTouchEvent(event);
             }
         });
+
+        adapter = new CoverFlowFragmentPagerAdapter(
+                mActivity.getSupportFragmentManager());
+
+        mViewPagerBot = (ViewPager) findViewById(R.id.bot_cover_flow);
+        mViewPagerBot.setAdapter(adapter);
+        mViewPagerBot.setPageMargin(NuxUtil.dpToPx(mActivity, 24));
+        mViewPagerBot.addOnPageChangeListener(adapter);
+        mViewPagerBot.setOffscreenPageLimit(5);
     }
 
     public void setViewList(List<View> viewList){

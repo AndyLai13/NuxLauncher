@@ -1,13 +1,15 @@
 package com.andylai.nuxlauncher;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.RelativeLayout;
+
+import com.andylai.nuxlauncher.fragment.FifthFragment;
+import com.andylai.nuxlauncher.fragment.FirstFragment;
+import com.andylai.nuxlauncher.fragment.FourthFragment;
+import com.andylai.nuxlauncher.fragment.SecondFragment;
+import com.andylai.nuxlauncher.fragment.ThirdFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,9 @@ public class CoverFlowFragmentPagerAdapter extends FragmentPagerAdapter implemen
         super(fm);
         mFragmentList.add(new FirstFragment());
         mFragmentList.add(new SecondFragment());
+        mFragmentList.add(new ThirdFragment());
+        mFragmentList.add(new FourthFragment());
+        mFragmentList.add(new FifthFragment());
     }
 
 //    public CoverFlowFragmentPagerAdapter(FragmentManager fm, List<Fragment> mFragmentList) {
@@ -53,6 +58,11 @@ public class CoverFlowFragmentPagerAdapter extends FragmentPagerAdapter implemen
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (positionOffset == 0) {
+            getItem(position).getView().setScaleX(0.8f);
+            getItem(position).getView().setScaleY(0.8f);
+            getItem(position).getView().requestLayout();
+        }
 
     }
 

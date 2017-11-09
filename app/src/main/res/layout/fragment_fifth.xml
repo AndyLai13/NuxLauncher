@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#584565"
-    tools:context="com.andylai.nuxlauncher.fragment.FirstFragment">
+    android:background="#3bd717"
+    tools:context="com.andylai.nuxlauncher.fragment.FifthFragment">
 
     <TextView
         android:layout_width="match_parent"

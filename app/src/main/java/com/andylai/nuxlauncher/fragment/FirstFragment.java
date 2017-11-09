@@ -1,4 +1,4 @@
-package com.andylai.nuxlauncher;
+package com.andylai.nuxlauncher.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.andylai.nuxlauncher.R;
 
 
 public class FirstFragment extends Fragment {
@@ -22,13 +24,6 @@ public class FirstFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ViewGroup.LayoutParams p = new ViewGroup.LayoutParams(50, 50);
-        view.setLayoutParams(p);
-        view.requestLayout();
-    }
 
 
 }
