@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.andylai.nuxlauncher.util.NuxUtil;
+
 import java.util.List;
 
 /**
@@ -57,7 +59,7 @@ public class CoverFlowAdapter extends PagerAdapter implements ViewPager.OnPageCh
         if (mViewList.size() > 0 && position < mViewList.size()) {
             //当前手指触摸滑动的页面,从0页滑动到1页 offset越来越大，padding越来越大
             Log.i("info", "重新设置padding");
-            Log.d("Andy", "positionOffset = " + positionOffset + "position = " + position);
+            Log.d("Andy", "position = " + position + ", positionOffset = " + positionOffset + ", position = " + position);
             int outHeightPadding = (int) (positionOffset * sHeightPadding);
             int outWidthPadding = (int) (positionOffset * sWidthPadding);
             // 从0滑动到一时，此时position = 0，其应该是缩小的，符合

@@ -45,22 +45,24 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
 
 
 
-        this.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // 传递给ViewPager 进行滑动处理
-                return mViewPagerTop.dispatchTouchEvent(event);
-            }
-        });
+
 
         adapter = new CoverFlowFragmentPagerAdapter(
                 mActivity.getSupportFragmentManager());
 
         mViewPagerBot = (ViewPager) findViewById(R.id.bot_cover_flow);
         mViewPagerBot.setAdapter(adapter);
-        mViewPagerBot.setPageMargin(NuxUtil.dpToPx(mActivity, 24));
         mViewPagerBot.addOnPageChangeListener(adapter);
         mViewPagerBot.setOffscreenPageLimit(5);
+
+
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // 传递给ViewPager 进行滑动处理
+                return mViewPagerBot.dispatchTouchEvent(event);
+            }
+        });
     }
 
     public void setViewList(List<View> viewList){

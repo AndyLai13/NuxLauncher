@@ -4,12 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.andylai.nuxlauncher.fragment.FifthFragment;
 import com.andylai.nuxlauncher.fragment.FirstFragment;
 import com.andylai.nuxlauncher.fragment.FourthFragment;
 import com.andylai.nuxlauncher.fragment.SecondFragment;
 import com.andylai.nuxlauncher.fragment.ThirdFragment;
+import com.andylai.nuxlauncher.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +60,25 @@ public class CoverFlowFragmentPagerAdapter extends FragmentPagerAdapter implemen
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if (positionOffset == 0) {
-            getItem(position).getView().setScaleX(0.8f);
-            getItem(position).getView().setScaleY(0.8f);
-            getItem(position).getView().requestLayout();
+        Log.d("Andy", "position = " + position + ", positionOffset = " + positionOffset + ", positionOffsetPixels = " + positionOffsetPixels);
+        if (mFragmentList.size() > 0 && position < mFragmentList.size()) {
+            //当前手指触摸滑动的页面,从0页滑动到1页 offset越来越大，padding越来越大
+            float max = Constant.SCALE_MAXIMUM;
+            float min = Constant.SCALE_MINIMUM;
+            float gap = max - min;
+            float outScale = ( max - gap * positionOffset );
+            float inScale = (gap * positionOffset + min);
+
+            Log.d("Andy" ,"outScale = " + outScale);
+            Log.d("Andy" ,"inScale  = " + inScale);
+            // 从0滑动到一时，此时position = 0，其应该是缩小的，符合
+            getItem(position).getView().setScaleX(outScale);
+            getItem(position).getView().setScaleY(outScale);
+            // position+1 为即将显示的页面，越来越大
+            if (position < mFragmentList.size() - 1) {
+                getItem(position + 1).getView().setScaleX(inScale);
+                getItem(position + 1).getView().setScaleY(inScale);
+            }
         }
 
     }

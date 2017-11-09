@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.andylai.nuxlauncher.NuxUtil;
+import com.andylai.nuxlauncher.util.NuxUtil;
 import com.andylai.nuxlauncher.OnSwipeTouchListener;
 import com.andylai.nuxlauncher.PieLayout;
 import com.andylai.nuxlauncher.R;

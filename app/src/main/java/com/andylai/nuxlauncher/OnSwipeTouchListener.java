@@ -6,6 +6,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.andylai.nuxlauncher.util.NuxUtil;
+
 /**
  * Created by AndyLai on 2017/10/28.
  */

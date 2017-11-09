@@ -1,4 +1,4 @@
-package com.andylai.nuxlauncher;
+package com.andylai.nuxlauncher.util;
 
 import android.content.Context;
 
