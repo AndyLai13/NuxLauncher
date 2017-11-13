@@ -78,9 +78,9 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
         mViewList.clear();
         for(View view: viewList){
             FrameLayout layout = new FrameLayout(getContext());
-            layout.setPadding(
-                    CoverFlowAdapter.sWidthPadding, CoverFlowAdapter.sHeightPadding,
-                    CoverFlowAdapter.sWidthPadding, CoverFlowAdapter.sHeightPadding);
+//            layout.setPadding(
+//                    CoverFlowAdapter.sWidthPadding, CoverFlowAdapter.sHeightPadding,
+//                    CoverFlowAdapter.sWidthPadding, CoverFlowAdapter.sHeightPadding);
             layout.addView(view);
             mViewList.add(layout);
         }
