@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -24,6 +25,11 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
     private OnPageSelectListener mListener;
     private List<View> mViewList = new ArrayList<>();
     private FragmentActivity mActivity;
+
+    private Button button1;
+    private Button button2;
+    private Button button3;
+
     CoverFlowFragmentPagerAdapter adapter;
 
     public CoverFlowViewPager(Context context, AttributeSet attrs) {
@@ -34,19 +40,37 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
     }
 
     private void init() {
-        mViewPagerTop = (ViewPager) findViewById(R.id.top_cover_flow);
+//        mViewPagerTop = (ViewPager) findViewById(R.id.top_cover_flow);
 
-        mAdapter = new CoverFlowAdapter(mViewList, getContext());
-        mAdapter.setOnPageSelectListener(this);
-
-        mViewPagerTop.setAdapter(mAdapter);
-        mViewPagerTop.addOnPageChangeListener(mAdapter);
-        mViewPagerTop.setOffscreenPageLimit(5);
-
-
+//        mAdapter = new CoverFlowAdapter(mViewList, getContext());
+//        mAdapter.setOnPageSelectListener(this);
+//
+//        mViewPagerTop.setAdapter(mAdapter);
+//        mViewPagerTop.addOnPageChangeListener(mAdapter);
+//        mViewPagerTop.setOffscreenPageLimit(5);
 
 
-
+        button1 = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button11);
+        button3 = (Button) findViewById(R.id.button12);
+        button1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPagerBot.setCurrentItem(0, true);
+            }
+        });
+        button2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPagerBot.setCurrentItem(1, true);
+            }
+        });
+        button3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPagerBot.setCurrentItem(2, true);
+            }
+        });
         adapter = new CoverFlowFragmentPagerAdapter(
                 mActivity.getSupportFragmentManager());
 
@@ -84,7 +108,7 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
             layout.addView(view);
             mViewList.add(layout);
         }
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
     }
 
     public void setOnPageSelectListener(OnPageSelectListener listener) {

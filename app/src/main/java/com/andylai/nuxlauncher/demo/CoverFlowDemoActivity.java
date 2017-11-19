@@ -45,6 +45,7 @@ public class CoverFlowDemoActivity extends AppCompatActivity {
         mCover.setOnPageSelectListener(new OnPageSelectListener() {
             @Override
             public void select(int position) {
+
                 Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
             }
         });
