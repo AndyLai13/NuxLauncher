@@ -78,7 +78,7 @@ public class SwippingPieMenuDemoActivity extends AppCompatActivity {
         params.bottomToBottom = 0;
         pieLayout = (PieLayout) findViewById(R.id.my_pie);
         pieLayout.setLayoutParams(params);
-        pieLayout.setOnClickListenerListener(mPieMenuListener);
+        pieLayout.setOnClickListener(mPieMenuListener);
         pieLayout.initPieMenu(getButtonIcons()/*null*/);
     }
 

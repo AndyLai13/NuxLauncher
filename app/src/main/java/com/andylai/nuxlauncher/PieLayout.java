@@ -50,13 +50,7 @@ public class PieLayout extends RelativeLayout{
         mContext = context;
     }
 
-    public PieLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        Log.d("Andy", "3");
-        mContext = context;
-    }
-
-    public void setOnClickListenerListener(View.OnClickListener listener) {
+    public void setOnClickListener(View.OnClickListener listener) {
         mListener = listener;
     }
 
