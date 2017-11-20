@@ -23,7 +23,7 @@ public class SwippingPieMenuDemoActivity extends AppCompatActivity {
     private Button openPieButton;
     private Button closePieButton;
 
-    private float EXPAND_RATIO = 0.8f;
+    private float EXPAND_RATIO = PieLayout.EXPAND_RATIO;
     private int rotateRadius; // unit : px
     private ConstraintLayout mMainPage;
 
@@ -68,6 +68,7 @@ public class SwippingPieMenuDemoActivity extends AppCompatActivity {
             }
         });
     }
+
     private void initPieLayout() {
         rotateRadius = (int) (EXPAND_RATIO * NuxUtil.getWindowWidth(this));
         Log.d(TAG, "rotateRadius = " + rotateRadius);
@@ -78,7 +79,7 @@ public class SwippingPieMenuDemoActivity extends AppCompatActivity {
         params.bottomToBottom = 0;
         pieLayout = (PieLayout) findViewById(R.id.my_pie);
         pieLayout.setLayoutParams(params);
-        pieLayout.setOnClickListener(mPieMenuListener);
+        //pieLayout.setOnClickListener(mPieMenuListener);
         pieLayout.initPieMenu(getButtonIcons()/*null*/);
     }
 

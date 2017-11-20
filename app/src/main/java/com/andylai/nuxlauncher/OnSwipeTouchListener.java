@@ -12,7 +12,12 @@ import com.andylai.nuxlauncher.util.NuxUtil;
  * Created by AndyLai on 2017/10/28.
  */
 
-public abstract class OnSwipeTouchListener implements View.OnTouchListener {
+public class OnSwipeTouchListener implements View.OnTouchListener {
+
+    public interface OnPageSelectListener {
+
+        void select(int position);
+    }
 
     private final String TAG = "OnSwipeTouchListener";
     private Context mContext;
@@ -78,8 +83,8 @@ public abstract class OnSwipeTouchListener implements View.OnTouchListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             Log.d("Andy", "onFling : " +
-                    "e1(x,y) = " + e1.getX() + ", " + e1.getY() +
-                    "e2(x,y) = " + e2.getX() + ", " + e2.getY() +
+                    "e1(x,y) = " + e1.getX() + ", " + e1.getY() + ", " +
+                    "e2(x,y) = " + e2.getX() + ", " + e2.getY() + ", " +
                     "velocityX = " + velocityX + ", velocityY = " + velocityY);
 
             return false;

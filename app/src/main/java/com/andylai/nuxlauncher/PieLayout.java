@@ -4,11 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+
+import com.andylai.nuxlauncher.util.NuxUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +19,7 @@ import java.util.Collection;
 
 public class PieLayout extends RelativeLayout{
 
+    public static final float EXPAND_RATIO = 0.8f;
     private final String TAG = "PieLayout";
 
     private Context mContext;
@@ -29,7 +33,8 @@ public class PieLayout extends RelativeLayout{
 
     private boolean mIsOpen = false;
     private boolean mIsInitFirstTime = true;
-    private View.OnClickListener mListener;
+    //private View.OnClickListener mListener;
+    private View.OnTouchListener mListener;
 
     private int[] mPreparedIds = {
             R.id.button1, R.id.button2, R.id.button3,
@@ -50,7 +55,15 @@ public class PieLayout extends RelativeLayout{
         mContext = context;
     }
 
-    public void setOnClickListener(View.OnClickListener listener) {
+    public ArrayList<ImageButton> getImageButtonGroup() {
+        return mImageButtonGroup;
+    }
+
+//    public void setOnClickListenerListener(View.OnClickListener listener) {
+//        mListener = listener;
+//    }
+
+    public void setOnTouchListener(View.OnTouchListener listener) {
         mListener = listener;
     }
 
@@ -81,7 +94,8 @@ public class PieLayout extends RelativeLayout{
 
         for (int i = 0; i < mImageButtonGroup.size(); i++) {
             mImageButtonGroup.get(i).setId(mImgBtnResId.get(i));
-            mImageButtonGroup.get(i).setOnClickListener(mListener);
+             mImageButtonGroup.get(i).setOnTouchListener(mListener);
+
         }
     }
 
