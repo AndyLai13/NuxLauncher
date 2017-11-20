@@ -24,4 +24,14 @@
         android:layout_height="wrap_content">
     </com.andylai.nuxlauncher.PieLayout>
 
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="576px"
+        android:layout_marginTop="1184px"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

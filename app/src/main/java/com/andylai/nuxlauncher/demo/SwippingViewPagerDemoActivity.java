@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.andylai.nuxlauncher.CoverFlowViewPager;
 import com.andylai.nuxlauncher.OnPageSelectListener;
+import com.andylai.nuxlauncher.OnSelectIconListener;
 import com.andylai.nuxlauncher.OnSwipeTouchListener;
 import com.andylai.nuxlauncher.PieLayout;
 import com.andylai.nuxlauncher.R;
@@ -56,7 +57,50 @@ public class SwippingViewPagerDemoActivity extends AppCompatActivity {
         params.bottomToBottom = 0;
         pieLayout.setLayoutParams(params);
         //pieLayout.setOnClickListener(mPieMenuListener);
-        pieLayout.setOnTouchListener(mTouchListener);
+        pieLayout.setOnTouchListener(/*mTouchListener*/new OnSelectIconListener(SwippingViewPagerDemoActivity.this) {
+            @Override
+            public void getMovingXY(float x, float y){
+                Log.d("Andy", "x = " + x);
+                Log.d("Andy", "y = " + y);
+
+                y = 576 - y;
+                float tan_theta = x/y;
+                double angle18 = Math.tan(1 * Math.PI/10);
+                double angle36 = Math.tan(2 * Math.PI/10);
+                double angle54 = Math.tan(3 * Math.PI/10);
+                double angle72 = Math.tan(4 * Math.PI/10);
+                double angle90 = Math.tan(5 * Math.PI/10);
+
+                Log.d("Andy", "x = " + x);
+                Log.d("Andy", "y = " + y);
+                Log.d("Andy", "tan_theta = " + tan_theta);
+                Log.d("Andy", "angle18 = " + angle18);
+                Log.d("Andy", "angle36 = " + angle36);
+                Log.d("Andy", "angle54 = " + angle54);
+                Log.d("Andy", "angle72 = " + angle72);
+                Log.d("Andy", "angle90 = " + angle90);
+
+
+                if (tan_theta <= angle18) {
+                    Log.d("Andy", "icon 1" );
+                    mCover.getViewPager().setCurrentItem(0,true);
+                } else if (angle18 <= tan_theta && tan_theta < angle36) {
+                    Log.d("Andy", "icon 2" );
+                    mCover.getViewPager().setCurrentItem(1,true);
+                } else if (angle36 <= tan_theta && tan_theta < angle54) {
+                    Log.d("Andy", "icon 3" );
+                    mCover.getViewPager().setCurrentItem(2,true);
+                } else if (angle54 <= tan_theta && tan_theta < angle72) {
+                    Log.d("Andy", "icon 4" );
+                    mCover.getViewPager().setCurrentItem(3,true);
+                } else {
+                    Log.d("Andy", "icon 5" );
+                    mCover.getViewPager().setCurrentItem(4,true);
+                }
+            }
+
+
+        });
         pieLayout.initPieMenu(null);
     }
 
@@ -91,24 +135,6 @@ public class SwippingViewPagerDemoActivity extends AppCompatActivity {
         });
     }
 
-
-//    View.OnClickListener mOpenClosePieButtonListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            switch (v.getId()) {
-//                case R.id.open_pie_button:
-//                    Log.d(TAG, "open_pie_button");
-//                    pieLayout.showPieMenu();
-//                    break;
-//                case R.id.close_pie_button:
-//                    pieLayout.closePieMenu();
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    };
-
     View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -132,24 +158,47 @@ public class SwippingViewPagerDemoActivity extends AppCompatActivity {
 //                    Log.d("Andy", "iconX, iconY = " + iconX + "," + iconY +
 //                            "; iconXNext, iconYNext = " + iconXNext + "," + iconYNext );
 
-                    for (int i = 0; i < iconButtons.size() - 1; i++) {
-
-                        AnimatedIconLocation location = new AnimatedIconLocation(iconButtons.get(i));
-                        int iconX = location.getX();
-                        int iconY = location.getY();
-                        AnimatedIconLocation locationNext = new AnimatedIconLocation(iconButtons.get(i + 1));
-                        int iconXNext = locationNext.getX();
-                        int iconYNext = locationNext.getY();
 
 
                         Log.d("Andy", "touch x y = " + event.getRawX() + ", " + event.getRawY());
-                        Log.d("Andy", "iconX, iconY = " + iconX + "," + iconY +
-                            "; iconXNext, iconYNext = " + iconXNext + "," + iconYNext );
-                        if ( iconX < event.getRawX() && event.getRawX() < iconXNext &&
-                                iconY < event.getRawY() && event.getRawY() < iconYNext ) {
-                            Log.d("Andy", " i = " + i);
+
+                        float xxx = event.getRawX();
+                        float yyy = 1280 - event.getRawY();
+                        float tan_theta = xxx/yyy;
+                        double angle18 = Math.tan(1 * Math.PI/10);
+                        double angle36 = Math.tan(2 * Math.PI/10);
+                        double angle54 = Math.tan(3 * Math.PI/10);
+                        double angle72 = Math.tan(4 * Math.PI/10);
+                        double angle90 = Math.tan(5 * Math.PI/10);
+
+                        Log.d("Andy", "xxx = " + xxx);
+                        Log.d("Andy", "yyy = " + yyy);
+                        Log.d("Andy", "tan_theta = " + tan_theta);
+                        Log.d("Andy", "angle18 = " + angle18);
+                        Log.d("Andy", "angle36 = " + angle36);
+                        Log.d("Andy", "angle54 = " + angle54);
+                        Log.d("Andy", "angle72 = " + angle72);
+                        Log.d("Andy", "angle90 = " + angle90);
+
+
+                        if (tan_theta <= angle18) {
+                            Log.d("Andy", "icon 1" );
+                            mCover.getViewPager().setCurrentItem(0,true);
+                        } else if (angle18 <= tan_theta && tan_theta < angle36) {
+                            Log.d("Andy", "icon 2" );
+                            mCover.getViewPager().setCurrentItem(1,true);
+                        } else if (angle36 <= tan_theta && tan_theta < angle54) {
+                            Log.d("Andy", "icon 3" );
+                            mCover.getViewPager().setCurrentItem(2,true);
+                        } else if (angle54 <= tan_theta && tan_theta < angle72) {
+                            Log.d("Andy", "icon 4" );
+                            mCover.getViewPager().setCurrentItem(3,true);
+                        } else {
+                            Log.d("Andy", "icon 5" );
+                            mCover.getViewPager().setCurrentItem(4,true);
                         }
-                    }
+
+
 
 
 
@@ -164,25 +213,4 @@ public class SwippingViewPagerDemoActivity extends AppCompatActivity {
 //        Log.d("Andy", "x =  " + locationOnScreent[0]);
 //        Log.d("Andy", "y =  " + locationOnScreent[1]);}
     };
-
-    public class AnimatedIconLocation {
-        public AnimatedIconLocation(View view) {
-            int[] locationOnScreen = new int[2];
-            view.getLocationOnScreen(locationOnScreen);
-            X = locationOnScreen[0];
-            Y = locationOnScreen[1];
-        }
-        public AnimatedIconLocation(ImageButton imageButton) {
-            int[] locationOnScreen = new int[2];
-            imageButton.getLocationOnScreen(locationOnScreen);
-            X = locationOnScreen[0];
-            Y = locationOnScreen[1];
-        }
-
-        private int X;
-        private int Y;
-        public int getX() {return X;}
-        public int getY() {return Y;}
-
-    }
 }

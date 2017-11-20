@@ -9,10 +9,10 @@ import android.view.View;
 import com.andylai.nuxlauncher.util.NuxUtil;
 
 /**
- * Created by AndyLai on 2017/10/28.
+ * Created by AndyLai on 2017/11/21.
  */
 
-public class OnSwipeTouchListener implements View.OnTouchListener {
+public class OnSelectIconListener implements View.OnTouchListener {
 
     private final String TAG = "OnSwipeTouchListener";
     private Context mContext;
@@ -20,7 +20,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 
 
 
-    public OnSwipeTouchListener (Context context){
+    public OnSelectIconListener (Context context){
         this.mContext = context;
         mGestureDetector = new GestureDetector(mContext, new GestureListener());
     }
@@ -39,12 +39,6 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
         }
 
         @Override
-        public boolean onDown(MotionEvent e) {
-            Log.d("Andy", "onDown");
-            return true;
-        }
-
-        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             Log.d(TAG, "onScroll : " +
                     "e1(x,y) = " + e1.getX() + ", " + e1.getY() +
@@ -54,20 +48,10 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
             int w = NuxUtil.getWindowWidth(mContext);
             int h = NuxUtil.getWindowHeight(mContext);
 
-            boolean condition1 = (e1.getX() <= (0.15 * w))
-                    && (e1.getY() >= (h - (0.8 * w)));
-            boolean condition2 = ((h - e1.getY()) <= (0.15 * w))
-                    && (e1.getX() <= (0.8 * w));
 
-            Log.d(TAG, "condition1 = " + condition1);
-            Log.d(TAG, "condition2 = " + condition2);
 
             try {
-                if (condition1) {
-                    onSwipeLeftLowerHalfBound();
-                } else if (condition2) {
-                    onSwipeBottomLeftHalfBound();
-                }
+                getMovingXY(e2.getX(), e2.getY());
                 return true;
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -75,23 +59,19 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
             return false;
         }
 
+
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            Log.d("Andy", "onFling : " +
-                    "e1(x,y) = " + e1.getX() + ", " + e1.getY() + ", " +
-                    "e2(x,y) = " + e2.getX() + ", " + e2.getY() + ", " +
-                    "velocityX = " + velocityX + ", velocityY = " + velocityY);
+//            Log.d("Andy", "onFling : " +
+//                    "e1(x,y) = " + e1.getX() + ", " + e1.getY() + ", " +
+//                    "e2(x,y) = " + e2.getX() + ", " + e2.getY() + ", " +
+//                    "velocityX = " + velocityX + ", velocityY = " + velocityY);
 
             return false;
         }
     }
 
-    public void onSwipeRight(){}
-    public void onSwipeLeft(){}
-    public void onSwipeTop(){}
-    public void onSwipeBottom(){}
-    public void onSwipeBottomLeftHalfBound(){}
-    public void onSwipeLeftLowerHalfBound(){}
+    public void getMovingXY(float x, float y) {}
 
 
 }

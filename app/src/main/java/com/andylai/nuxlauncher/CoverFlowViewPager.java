@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -75,6 +74,7 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
                 mActivity.getSupportFragmentManager());
 
         mViewPagerBot = (ViewPager) findViewById(R.id.bot_cover_flow);
+
         mViewPagerBot.setAdapter(adapter);
         mViewPagerBot.addOnPageChangeListener(adapter);
         mViewPagerBot.setOffscreenPageLimit(5);
@@ -87,6 +87,10 @@ public class CoverFlowViewPager extends RelativeLayout implements OnPageSelectLi
                 return mViewPagerBot.dispatchTouchEvent(event);
             }
         });
+    }
+
+    public ViewPager getViewPager() {
+        return mViewPagerBot;
     }
 
     public void setViewList(List<View> viewList){
