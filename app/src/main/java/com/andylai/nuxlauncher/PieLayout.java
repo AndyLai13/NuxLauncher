@@ -4,14 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-
-import com.andylai.nuxlauncher.util.NuxUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +37,7 @@ public class PieLayout extends RelativeLayout{
             R.id.button1, R.id.button2, R.id.button3,
             R.id.button4, R.id.button5, R.id.button6};
     private int[] mPreparedRes = {
-            R.mipmap.ic_button1, R.mipmap.ic_button2, R.mipmap.ic_button3,
+            R.drawable.ic_test1_01, R.mipmap.ic_button2, R.mipmap.ic_button3,
             R.mipmap.ic_button4, R.mipmap.ic_button5, R.mipmap.ic_button6};
 
     public PieLayout(Context context) {
